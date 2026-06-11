@@ -24,8 +24,6 @@ Route::middleware('guest')->group(function () {
 // AUTH USER
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/ajukan', [EventController::class, 'create'])->name('events.create');
-    Route::post('/ajukan', [EventController::class, 'store'])->name('events.store');
 });
 
 // ADMIN ONLY

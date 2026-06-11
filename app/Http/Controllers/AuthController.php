@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller {
 
@@ -39,23 +40,28 @@ class AuthController extends Controller {
     }
 
     public function register(Request $request) {
-        $request->validate([
+        $validated = $request->validate([
             'name'     => 'required|string|max:100',
-            'email'    => 'required|email|unique:users,email',
+            'email'    => ['required','email','unique:users,email','regex:/^[^@]+@(gmail\.com|relawankita\.com)$/i'],
             'password' => 'required|min:6|confirmed',
         ], [
             'name.required'      => 'Nama wajib diisi.',
             'email.required'     => 'Email wajib diisi.',
+            'email.email'        => 'Format email tidak valid.',
             'email.unique'       => 'Email sudah terdaftar.',
+            'email.regex'        => 'Email harus menggunakan domain @gmail.com untuk user atau @relawankita.com untuk admin.',
             'password.min'       => 'Password minimal 6 karakter.',
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
 
+        $domain = Str::lower(Str::after($validated['email'], '@'));
+        $role = $domain === 'relawankita.com' ? 'admin' : 'user';
+
         $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'role'     => 'user',
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role'     => $role,
         ]);
 
         Auth::login($user);

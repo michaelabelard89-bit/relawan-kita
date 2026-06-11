@@ -35,8 +35,6 @@
                             <a href="{{ route('admin.events.index') }}" class="text-sm font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard Admin
                             </a>
-                        @else
-                            <a href="{{ route('events.create') }}" class="text-sm font-semibold text-gray-600 hover:text-blue-600">Ajukan Event</a>
                         @endif
                         <div class="relative group">
                             <button class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition">

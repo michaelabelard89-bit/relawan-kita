@@ -29,6 +29,7 @@
                     <input type="email" name="email" value="{{ old('email') }}" required
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition"
                         placeholder="nama@email.com">
+                    <p class="text-xs text-gray-500 mt-2">Gunakan email <strong>@gmail.com</strong> untuk user atau <strong>@relawankita.com</strong> untuk admin.</p>
                 </div>
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>

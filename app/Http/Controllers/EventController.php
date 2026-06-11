@@ -31,10 +31,16 @@ class EventController extends Controller {
     }
 
     public function create() {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Akses ditolak. Hanya admin yang dapat mengajukan event.');
+        }
         return view('events.create');
     }
 
     public function store(Request $request) {
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Akses ditolak. Hanya admin yang dapat mengajukan event.');
+        }
         $validated = $request->validate([
             'title'        => 'required|string|max:255',
             'category'     => 'required|string|max:100',
