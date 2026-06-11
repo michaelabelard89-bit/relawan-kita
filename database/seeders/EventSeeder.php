@@ -1,0 +1,18 @@
+<?php
+namespace Database\Seeders;
+use App\Models\Event;
+use Illuminate\Database\Seeder;
+
+class EventSeeder extends Seeder {
+    public function run(): void {
+        $events = [
+            ['title'=>'Aksi Bersih Pantai & Edukasi Mangrove','description'=>'Bergabunglah dalam aksi nyata menjaga kelestarian pantai. Kegiatan mencakup pembersihan sampah plastik dan penanaman bibit mangrove untuk mencegah abrasi.','category'=>'Lingkungan','location'=>'Pantai Ancol, Jakarta Utara','event_date'=>'2026-06-15','event_time'=>'07:00:00','organizer'=>'Yayasan Hijau Nusantara','requirements'=>'Siap bekerja di luar ruangan, usia minimal 15 tahun.','image_url'=>'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600','status'=>'approved','user_id'=>1],
+            ['title'=>'Program Bimbingan Belajar Gratis','description'=>'Program bimbel gratis untuk anak-anak SD di daerah terpencil. Dibutuhkan relawan pengajar yang sabar dan berdedikasi.','category'=>'Pendidikan','location'=>'SDN Cakung 01, Jakarta Timur','event_date'=>'2026-06-20','event_time'=>'09:00:00','organizer'=>'Komunitas Pengajar Muda','requirements'=>'Minimal SMA/SMK, sabar mengajar anak-anak.','image_url'=>'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600','status'=>'approved','user_id'=>1],
+            ['title'=>'Bakti Sosial Kesehatan Gratis','description'=>'Pemeriksaan kesehatan gratis untuk masyarakat kurang mampu meliputi cek tekanan darah, gula darah, dan konsultasi kesehatan umum.','category'=>'Kesehatan','location'=>'Posyandu RW 05, Tangerang Selatan','event_date'=>'2026-07-05','event_time'=>'08:00:00','organizer'=>'Ikatan Dokter Muda Indonesia','requirements'=>'Diutamakan mahasiswa kesehatan, komunikatif.','image_url'=>'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600','status'=>'approved','user_id'=>1],
+            ['title'=>'Fun Run & Donor Darah','description'=>'Kegiatan lari santai 5K sekaligus donor darah massal untuk membantu ketersediaan stok darah di PMI.','category'=>'Olahraga','location'=>'Gelora Bung Karno, Jakarta','event_date'=>'2026-08-10','event_time'=>'06:00:00','organizer'=>'PMI Jakarta','requirements'=>'Sehat jasmani, berat badan minimal 45kg.','image_url'=>'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600','status'=>'approved','user_id'=>1],
+            ['title'=>'Festival Seni & Budaya Lokal','description'=>'Bantu kami menyelenggarakan festival kesenian lokal yang menampilkan pertunjukan tari tradisional dan pameran kerajinan.','category'=>'Sosial','location'=>'Taman Ismail Marzuki, Jakarta Pusat','event_date'=>'2026-07-17','event_time'=>'10:00:00','organizer'=>'Dinas Kebudayaan DKI','requirements'=>'Tertarik dengan seni budaya, energik.','image_url'=>'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600','status'=>'approved','user_id'=>1],
+            ['title'=>'Pengajaran Coding untuk Anak','description'=>'Program pengenalan programming untuk anak-anak usia 10-15 tahun menggunakan Scratch dan Python dasar.','category'=>'Pendidikan','location'=>'Perpustakaan Nasional, Jakarta','event_date'=>'2026-08-22','event_time'=>'13:00:00','organizer'=>'Code4Kids Indonesia','requirements'=>'Menguasai minimal satu bahasa pemrograman.','image_url'=>'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600','status'=>'pending','user_id'=>2],
+        ];
+        foreach ($events as $e) Event::create($e);
+    }
+}
