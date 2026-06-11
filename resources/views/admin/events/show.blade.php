@@ -45,6 +45,8 @@
                             <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Email</th>
                             <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">No HP</th>
                             <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Waktu</th>
+                            <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Status</th>
+                            <th class="px-4 py-2 text-center text-xs font-bold text-gray-500 uppercase">Aksi</th>
                         </tr></thead>
                         <tbody class="divide-y">
                             @foreach($event->registrations as $r)
@@ -53,6 +55,26 @@
                                 <td class="px-4 py-3 text-gray-500">{{ $r->email }}</td>
                                 <td class="px-4 py-3 text-gray-500">{{ $r->phone }}</td>
                                 <td class="px-4 py-3 text-gray-400">{{ $r->created_at->format('d/m/Y H:i') }}</td>
+                                <td class="px-4 py-3">
+                                    @php
+                                        $rcolors = ['approved'=>'bg-green-100 text-green-700','pending'=>'bg-yellow-100 text-yellow-700','rejected'=>'bg-red-100 text-red-700'];
+                                    @endphp
+                                    <span class="px-2 py-1 rounded-full text-xs font-bold {{ $rcolors[$r->status] ?? 'bg-gray-100 text-gray-700' }}">{{ ucfirst($r->status) }}</span>
+                                </td>
+                                <td class="px-4 py-3 text-center">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <form method="POST" action="{{ route('admin.events.registrations.status', ['event'=>$event,'registration'=>$r]) }}">
+                                            @csrf @method('PATCH')
+                                            <input type="hidden" name="status" value="approved">
+                                            <button type="submit" class="text-green-600 hover:text-green-900 text-sm font-semibold">Setujui</button>
+                                        </form>
+                                        <form method="POST" action="{{ route('admin.events.registrations.status', ['event'=>$event,'registration'=>$r]) }}">
+                                            @csrf @method('PATCH')
+                                            <input type="hidden" name="status" value="rejected">
+                                            <button type="submit" class="text-red-600 hover:text-red-900 text-sm font-semibold">Tolak</button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
